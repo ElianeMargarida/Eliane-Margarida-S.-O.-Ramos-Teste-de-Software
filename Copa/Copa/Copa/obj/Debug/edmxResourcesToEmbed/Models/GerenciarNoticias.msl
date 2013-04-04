@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="opadua08ModelStoreContainer" CdmEntityContainer="gerenciarNoticiaEntities">
+    <EntitySetMapping Name="comentario">
+      <EntityTypeMapping TypeName="opadua08Model.comentario">
+        <MappingFragment StoreEntitySet="comentario">
+          <ScalarProperty Name="idcomentario" ColumnName="idcomentario" />
+          <ScalarProperty Name="conteudo" ColumnName="conteudo" />
+          <ScalarProperty Name="data" ColumnName="data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="noticia">
+      <EntityTypeMapping TypeName="opadua08Model.noticia">
+        <MappingFragment StoreEntitySet="noticia">
+          <ScalarProperty Name="idnoticia" ColumnName="idnoticia" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="conteudo" ColumnName="conteudo" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idcomentario" ColumnName="idcomentario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_usuario">
+      <EntityTypeMapping TypeName="opadua08Model.tipo_usuario">
+        <MappingFragment StoreEntitySet="tipo_usuario">
+          <ScalarProperty Name="idtipo_usuario" ColumnName="idtipo_usuario" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="opadua08Model.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="idtipo_usuario" ColumnName="idtipo_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

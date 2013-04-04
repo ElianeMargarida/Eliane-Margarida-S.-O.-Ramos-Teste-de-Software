@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="opadua08Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="gerenciarNoticiaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="comentario" EntityType="opadua08Model.comentario" />
+    <EntitySet Name="noticia" EntityType="opadua08Model.noticia" />
+    <EntitySet Name="tipo_usuario" EntityType="opadua08Model.tipo_usuario" />
+    <EntitySet Name="usuario" EntityType="opadua08Model.usuario" />
+    <AssociationSet Name="idcomentario" Association="opadua08Model.idcomentario">
+      <End Role="comentario" EntitySet="comentario" />
+      <End Role="noticia" EntitySet="noticia" />
+    </AssociationSet>
+    <AssociationSet Name="idusuario" Association="opadua08Model.idusuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="noticia" EntitySet="noticia" />
+    </AssociationSet>
+    <AssociationSet Name="idtipo_usuario" Association="opadua08Model.idtipo_usuario">
+      <End Role="tipo_usuario" EntitySet="tipo_usuario" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="comentario">
+    <Key>
+      <PropertyRef Name="idcomentario" />
+    </Key>
+    <Property Name="idcomentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="conteudo" Type="String" Nullable="false" />
+    <Property Name="data" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="noticia" Relationship="opadua08Model.idcomentario" FromRole="comentario" ToRole="noticia" />
+  </EntityType>
+  <EntityType Name="noticia">
+    <Key>
+      <PropertyRef Name="idnoticia" />
+    </Key>
+    <Property Name="idnoticia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" Nullable="false" />
+    <Property Name="data" Type="DateTime" Nullable="false" />
+    <Property Name="conteudo" Type="String" Nullable="false" />
+    <Property Name="idusuario" Type="Int32" Nullable="false" />
+    <Property Name="idcomentario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="comentario" Relationship="opadua08Model.idcomentario" FromRole="noticia" ToRole="comentario" />
+    <NavigationProperty Name="usuario" Relationship="opadua08Model.idusuario" FromRole="noticia" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="tipo_usuario">
+    <Key>
+      <PropertyRef Name="idtipo_usuario" />
+    </Key>
+    <Property Name="idtipo_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" Nullable="false" />
+    <NavigationProperty Name="usuario" Relationship="opadua08Model.idtipo_usuario" FromRole="tipo_usuario" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idusuario" />
+    </Key>
+    <Property Name="idusuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" />
+    <Property Name="senha" Type="String" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" />
+    <Property Name="idtipo_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="noticia" Relationship="opadua08Model.idusuario" FromRole="usuario" ToRole="noticia" />
+    <NavigationProperty Name="tipo_usuario" Relationship="opadua08Model.idtipo_usuario" FromRole="usuario" ToRole="tipo_usuario" />
+  </EntityType>
+  <Association Name="idcomentario">
+    <End Role="comentario" Type="opadua08Model.comentario" Multiplicity="1" />
+    <End Role="noticia" Type="opadua08Model.noticia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comentario">
+        <PropertyRef Name="idcomentario" />
+      </Principal>
+      <Dependent Role="noticia">
+        <PropertyRef Name="idcomentario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idusuario">
+    <End Role="usuario" Type="opadua08Model.usuario" Multiplicity="1" />
+    <End Role="noticia" Type="opadua08Model.noticia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idusuario" />
+      </Principal>
+      <Dependent Role="noticia">
+        <PropertyRef Name="idusuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idtipo_usuario">
+    <End Role="tipo_usuario" Type="opadua08Model.tipo_usuario" Multiplicity="1" />
+    <End Role="usuario" Type="opadua08Model.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_usuario">
+        <PropertyRef Name="idtipo_usuario" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="idtipo_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

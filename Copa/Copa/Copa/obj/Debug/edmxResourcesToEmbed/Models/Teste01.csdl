@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="opadua05Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="teste01Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="post" EntityType="opadua05Model.post" />
+    <EntitySet Name="user" EntityType="opadua05Model.user" />
+    <AssociationSet Name="iduser" Association="opadua05Model.iduser">
+      <End Role="user" EntitySet="user" />
+      <End Role="post" EntitySet="post" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="post">
+    <Key>
+      <PropertyRef Name="idpost" />
+    </Key>
+    <Property Name="idpost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iduser" Type="Int32" Nullable="false" />
+    <Property Name="titulo" Type="String" Nullable="false" />
+    <Property Name="post1" Type="String" Nullable="false" />
+    <Property Name="data" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="opadua05Model.iduser" FromRole="post" ToRole="user" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="iduser" />
+    </Key>
+    <Property Name="iduser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" />
+    <Property Name="senha" Type="String" Nullable="false" />
+    <NavigationProperty Name="post" Relationship="opadua05Model.iduser" FromRole="user" ToRole="post" />
+  </EntityType>
+  <Association Name="iduser">
+    <End Role="user" Type="opadua05Model.user" Multiplicity="1" />
+    <End Role="post" Type="opadua05Model.post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="post">
+        <PropertyRef Name="iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

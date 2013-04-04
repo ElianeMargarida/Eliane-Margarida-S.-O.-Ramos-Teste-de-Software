@@ -1,0 +1,50 @@
+﻿@model Copa.Models.noticia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>noticia</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.titulo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.titulo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.data)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.data)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.conteudo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.conteudo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.usuario.nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuario.nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.comentario.conteudo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.comentario.conteudo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.idnoticia }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
